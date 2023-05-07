@@ -1,0 +1,1 @@
+export const GET_POSTS_QUERY = 'GET_POSTS_QUERY';
