@@ -1,2 +1,4 @@
 export const GET_POSTS_QUERY = 'GET_POSTS_QUERY';
+export const GET_POST_VIEW_QUERY = 'GET_POST_VIEW_QUERY';
+
 export const GET_USER_QUERY = 'GET_USER_QUERY';

@@ -9,4 +9,5 @@ export const PROTECTED_ROUTES = {
 
 export const API_ROUTES = {
   getPosts: () => `/posts`,
+  getPostView: (id: string) => `/posts/${id}`,
 };
