@@ -33,7 +33,11 @@ const TabsNav: React.FC<TabsNav> = ({ tabs }) => {
         </TabList>
         {tabs.map((tab) => {
           return (
-            <TabPanel key={tab.id} value={tab.id}>
+            <TabPanel
+              key={tab.id}
+              value={tab.id}
+              sx={{ padding: 0, marginBottom: '10rem' }}
+            >
               {tab.body}
             </TabPanel>
           );
