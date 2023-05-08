@@ -14,17 +14,22 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^4.5.8",
+    "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.129",
     "@mui/material": "^5.12.3",
     "axios": "^1.4.0",
     "firebase": "^9.21.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-query": "^3.39.3",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@react-query-firebase/auth": "^1.0.0-dev.2",
     "@types/axios": "^0.14.0",
     "@types/firebase": "^3.2.1",
     "@types/node": "20.1.0",
