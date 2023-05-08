@@ -14,6 +14,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthContextProvider } from '@/context/auth/AuthContextProvider';
 import RouteGuard from '@/components/global/RouteGuard';
 import Layout from '@/components/global/Layout';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import LoadingSpinner from '@/components/global/LoadingSpinner';
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -27,6 +30,20 @@ const queryClient = new QueryClient();
 
 const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const { events } = useRouter();
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  useEffect(() => {
+    events.on('routeChangeStart', () => setIsLoading(true));
+    events.on('routeChangeComplete', () => setIsLoading(false));
+    events.on('routeChangeError', () => setIsLoading(false));
+    return () => {
+      events.off('routeChangeStart', () => setIsLoading(true));
+      events.off('routeChangeComplete', () => setIsLoading(false));
+      events.off('routeChangeError', () => setIsLoading(false));
+    };
+  }, [events]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -35,9 +52,11 @@ const MyApp: React.FunctionComponent<MyAppProps> = (props) => {
           <CssBaseline />
           <AuthContextProvider>
             <RouteGuard>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <LoadingSpinner isLoading={isLoading}>
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </LoadingSpinner>
             </RouteGuard>
           </AuthContextProvider>
         </ThemeProvider>
